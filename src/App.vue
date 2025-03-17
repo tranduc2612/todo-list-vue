@@ -3,7 +3,6 @@ import { ref } from 'vue';
 import Todo from './components/todo/Todo.vue';
 
 const valueStr = ref("");
-let editMode = ref(false);
 const listTodo = ref([
   {
     id: 1,
@@ -25,6 +24,21 @@ function handleAddTodo(){
 function handleClickTodo(){
   console.log('heloo coin')
 }
+
+function handleDelete(id: number){
+  listTodo.value = listTodo.value.filter(item => item.id !== id);
+}
+
+function handleUpdate(id: number){
+  if(!valueStr.value.length){
+    return
+  }
+  const todo = listTodo.value.find(item => item.id === id);
+  if (todo) {
+    todo.content = valueStr.value;
+  }
+  valueStr.value = ""
+}
 </script>
 
 <template>
@@ -35,11 +49,11 @@ function handleClickTodo(){
       placeholder="Nhập việc muốn làm" v-model="valueStr"
       />
       <button type="button" @click="handleAddTodo" class="ml-3 cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-        {{ editMode ? 'Edit' : 'Add' }}
+        Add
       </button>
   </div>
   <li v-for="item in listTodo">
-    <Todo :content="item.content" @click="handleClickTodo"/>
+    <Todo :id="item.id" :content="item.content" @click-detail="handleClickTodo" @click-delete="handleDelete" @click-update="handleUpdate"/>
   </li>
 </template>
 
