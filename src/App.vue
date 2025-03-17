@@ -28,7 +28,7 @@ function handleClickTodo(){
 </script>
 
 <template>
-  <h1 class="font-bold text-2xl mb-5">Todo App2</h1>
+  <h1 class="font-bold text-2xl mb-5">Todo App</h1>
   <div class="flex mb-10">
       <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/6 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
        required 
